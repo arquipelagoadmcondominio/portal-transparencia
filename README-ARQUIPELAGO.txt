@@ -1,17 +1,31 @@
-PROJETO ATUALIZADO - ARQUIPÉLAGO ADMINISTRAÇÃO DE CONDOMÍNIOS
+PROJETO ARQUIPÉLAGO - PORTAL TRANSPARÊNCIA
 
-Arquivos principais alterados:
-- index.html: textos, identidade, links e marca Arquipélago.
-- style.css: paleta baseada na logo: azul oceano, azul onda, laranja pôr do sol, amarelo e verde suave.
-- logo-arquipelago.jpeg: logo enviada aplicada na página principal, área do cliente e rodapé.
-- supabase-arquipelago-portal.sql: estrutura inicial para criar o banco do Portal Transparência no Supabase.
+Arquivos principais:
+- index.html: site principal. Botão Área do Cliente removido. O menu Entrar no Portal abre portal.html.
+- portal.html: página do portal com cabeçalho da Arquipélago, menu Voltar para o site, login de Morador e Administração.
+- portal.css: layout do portal.
+- portal.js: regras do portal e integração opcional com Supabase.
+- supabase-arquipelago-portal-completo.sql: SQL completo para executar no Supabase.
 
-Ajustes manuais necessários antes de publicar:
-1. Trocar telefone, WhatsApp, e-mail e domínio pelos dados oficiais da Arquipélago.
-2. Quando o subdomínio do portal estiver pronto, substituir:
-   https://portal.arquipelagocondominios.com.br
-3. No Supabase novo, abrir SQL Editor, colar todo o arquivo supabase-arquipelago-portal.sql e executar.
-4. Configurar no projeto as variáveis do Supabase novo, se o portal usar SUPABASE_URL e SUPABASE_ANON_KEY/SERVICE_ROLE_KEY.
+Cloudflare Pages:
+Framework preset: None
+Build command: deixe vazio
+Build output directory: /
+
+Supabase:
+1. Crie um projeto novo no Supabase.
+2. Abra SQL Editor.
+3. Cole e execute o arquivo supabase-arquipelago-portal-completo.sql.
+4. Vá em Project Settings > API.
+5. Copie Project URL e anon public key.
+6. Abra portal.js e substitua:
+   SUPABASE_URL = 'COLE_AQUI_A_URL_DO_SEU_SUPABASE'
+   SUPABASE_ANON_KEY = 'COLE_AQUI_A_CHAVE_ANON_PUBLIC_DO_SUPABASE'
+7. Envie novamente ao GitHub para o Cloudflare atualizar o deploy.
+
+Login inicial da administração:
+E-mail: admin@arquipelago.com
+Senha: admin123
 
 Observação:
-Este ZIP enviado continha apenas o site institucional estático. Não havia, dentro dele, as páginas internas reais de login/painel do Portal Transparência. Por isso, eu deixei a identidade visual preparada no site e gerei o SQL completo para o banco do portal novo.
+Enquanto você não colocar as chaves do Supabase no portal.js, o sistema funciona em modo local no navegador usando localStorage. Após configurar o Supabase, passa a gravar no banco.
