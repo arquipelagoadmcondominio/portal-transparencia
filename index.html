@@ -35,12 +35,9 @@
         <a href="#inicio">Home</a>
         <a href="#sobre">Sobre</a>
         <a href="#servicos">Serviços</a>
-        <a href="#sindico">Síndico Profissional</a>
-        <a href="#portal">Portal</a>
+        <a href="portal.html">Entrar no Portal</a>
         <a href="#contato">Contato</a>
       </div>
-
-      <a class="nav-cta" href="https://portal.arquipelagocondominios.com.br" target="_blank" rel="noopener noreferrer">Área do Cliente</a>
     </nav>
   </header>
 
@@ -72,17 +69,16 @@
       <article><strong>Portal do cliente</strong><span>Acesso simples e seguro</span></article>
     </section>
 
-    <section id="sindico" class="sindico-section">
+    <section id="gestao" class="sindico-section">
       <div class="section-heading left">
-        <span class="eyebrow">Serviço em destaque</span>
-        <h2>Síndico Profissional para condomínios modernos</h2>
-        <p>Atuação técnica, imparcial e organizada para reduzir conflitos, melhorar a rotina condominial e profissionalizar a administração.</p>
+        <span class="eyebrow">Gestão condominial</span>
+        <h2>Administração moderna, clara e responsável.</h2>
+        <p>Processos organizados para melhorar a rotina do condomínio, fortalecer a comunicação com moradores e manter a prestação de contas sempre objetiva.</p>
       </div>
-      <div class="sindico-layout">
-        <div class="sindico-image"><img src="sindico-profissional.jpg" alt="Síndico profissional e gestão condominial"></div>
+      <div class="sindico-layout sindico-layout--single">
         <div class="sindico-content">
-          <h3>Gestão segura com presença, método e responsabilidade.</h3>
-          <p>Acompanhamento administrativo, financeiro e operacional com foco em previsibilidade, comunicação com moradores e conservação das áreas comuns.</p>
+          <h3>Controle, transparência e acompanhamento profissional.</h3>
+          <p>Acompanhamento administrativo, financeiro e operacional com foco em previsibilidade, conservação das áreas comuns e atendimento eficiente aos condôminos.</p>
           <div class="benefits-grid">
             <div>📊 <strong>Financeiro</strong><span>Controle de cobranças, despesas e inadimplência.</span></div>
             <div>👥 <strong>Administrativo</strong><span>Documentos, assembleias, comunicados e contratos.</span></div>
@@ -130,7 +126,7 @@
           <span class="eyebrow">Portal Transparência</span>
           <h2>Acesso exclusivo para clientes</h2>
           <p>Moradores, portaria e administradores podem acessar informações do condomínio de forma simples, objetiva e segura.</p>
-          <a class="btn btn-primary" href="https://portal.arquipelagocondominios.com.br" target="_blank" rel="noopener noreferrer">Entrar no portal</a>
+          <a class="btn btn-primary" href="portal.html">Entrar no portal</a>
         </div>
       </div>
     </section>
@@ -147,7 +143,7 @@
     </div>
   </footer>
   <script>
-    const navbar=document.querySelector('.navbar');const menuToggle=document.querySelector('.menu-toggle');const menuLinks=document.querySelectorAll('.menu a,.nav-cta');if(navbar&&menuToggle){menuToggle.addEventListener('click',()=>{const isOpen=navbar.classList.toggle('nav-open');menuToggle.setAttribute('aria-expanded',String(isOpen));menuToggle.setAttribute('aria-label',isOpen?'Fechar menu':'Abrir menu')});menuLinks.forEach(link=>link.addEventListener('click',()=>{navbar.classList.remove('nav-open');menuToggle.setAttribute('aria-expanded','false');menuToggle.setAttribute('aria-label','Abrir menu')}))}
+    const navbar=document.querySelector('.navbar');const menuToggle=document.querySelector('.menu-toggle');const menuLinks=document.querySelectorAll('.menu a');if(navbar&&menuToggle){menuToggle.addEventListener('click',()=>{const isOpen=navbar.classList.toggle('nav-open');menuToggle.setAttribute('aria-expanded',String(isOpen));menuToggle.setAttribute('aria-label',isOpen?'Fechar menu':'Abrir menu')});menuLinks.forEach(link=>link.addEventListener('click',()=>{navbar.classList.remove('nav-open');menuToggle.setAttribute('aria-expanded','false');menuToggle.setAttribute('aria-label','Abrir menu')}))}
   </script>
 </body>
 </html>

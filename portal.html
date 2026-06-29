@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Transparência | Arquipélago</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="portal.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="portal-body">
+  <header class="site-header">
+    <div class="topbar">
+      <div class="topbar__item">🌊 Portal Transparência Arquipélago.</div>
+      <div class="topbar__contacts"><a href="tel:+5592999999999">☎️ (92) 99999-9999</a><a href="mailto:contato@arquipelagocondominios.com.br">✉️ contato@arquipelagocondominios.com.br</a></div>
+    </div>
+    <nav class="navbar" aria-label="Portal Arquipélago">
+      <a class="brand" href="index.html"><img src="logo-arquipelago.jpeg" alt="Logo Arquipélago"><span><strong>Arquipélago</strong><small>Administração de Condomínios</small></span></a>
+      <div class="menu menu-portal"><a href="index.html">Voltar para o site</a></div>
+    </nav>
+  </header>
+
+  <main class="portal-main">
+    <section id="loginArea" class="portal-login-shell">
+      <div class="section-heading"><span class="eyebrow">Acesso restrito</span><h1>Portal Transparência</h1><p>Selecione seu perfil para acessar informações, lançamentos, mensagens e demandas do condomínio.</p></div>
+      <div class="login-grid">
+        <article class="login-card">
+          <h2>🏠 Login do morador</h2>
+          <p>Consulte lançamentos do condomínio, envie mensagens e acompanhe respostas da administração.</p>
+          <form id="moradorLoginForm" class="form-grid one">
+            <select id="moradorLoginCondominio" required><option value="">Selecione o condomínio</option></select>
+            <input id="moradorLoginEmail" type="email" placeholder="E-mail do morador" required>
+            <input id="moradorLoginSenha" type="password" placeholder="Senha de acesso" required>
+            <button class="btn btn-primary" type="submit">Entrar como morador</button>
+          </form>
+        </article>
+        <article class="login-card admin-login">
+          <h2>🧭 Login da administração</h2>
+          <p>Acesso do síndico/administração para gerenciar condomínios, moradores, portaria, lançamentos e ocorrências.</p>
+          <form id="adminLoginForm" class="form-grid one">
+            <input id="adminEmail" type="email" placeholder="E-mail da administração" value="admin@arquipelago.com" required>
+            <input id="adminSenha" type="password" placeholder="Senha de acesso" value="admin123" required>
+            <button class="btn btn-primary" type="submit">Entrar na administração</button>
+          </form>
+          <small class="hint">Acesso inicial após executar o SQL: admin@arquipelago.com / admin123</small>
+        </article>
+      </div>
+    </section>
+
+    <section id="adminPanel" class="panel hidden">
+      <div class="panel-head"><div><span class="eyebrow">Painel administrativo</span><h1>Gestão completa do condomínio</h1><p>Gerencie condomínios, moradores, portaria, lançamentos, mensagens, ocorrências e backups.</p></div><button class="btn small" data-logout>Sair</button></div>
+      <div class="tabs"><button data-tab="condominios" class="active">Condomínios</button><button data-tab="moradores">Moradores</button><button data-tab="portaria">Portaria</button><button data-tab="lancamentos">Lançamentos</button><button data-tab="relatorios">Relatórios e Backup</button><button data-tab="mensagens">Mensagens</button><button data-tab="ocorrencias">Ocorrências</button><button data-tab="remocoes">Remoções</button></div>
+
+      <div class="tab-content active" id="tab-condominios">
+        <div class="module-card"><h2>🏢 Condomínios</h2><p>Crie, edite e remova condomínios.</p><form id="condominioForm" class="form-grid"><input type="hidden" id="condominioId"><input id="condNome" placeholder="Nome do condomínio" required><input id="condEndereco" placeholder="Endereço"><input id="condCnpj" placeholder="CNPJ"><input id="condResponsavel" placeholder="Responsável / síndico"><button class="btn btn-primary" type="submit">Salvar condomínio</button></form></div>
+        <div class="table-card"><h3>Condomínios cadastrados</h3><div id="condominiosList"></div></div>
+      </div>
+
+      <div class="tab-content" id="tab-moradores">
+        <div class="module-card"><h2>👥 Moradores</h2><p>Cadastre moradores e crie o login vinculado ao condomínio.</p><form id="moradorForm" class="form-grid two"><input type="hidden" id="moradorId"><input id="moradorNome" placeholder="Nome do morador" required><input id="moradorEmail" type="email" placeholder="E-mail de acesso" required><input id="moradorSenha" type="password" placeholder="Senha inicial"><input id="moradorUnidade" placeholder="Apartamento / unidade"><input id="moradorCpf" placeholder="CPF"><input id="moradorCelular" placeholder="Celular"><input id="moradorPlaca" placeholder="Placa do veículo"><textarea id="moradorMoradores" placeholder="Nomes das pessoas que moram junto com este morador (um nome por linha, ou separados por vírgula)"></textarea><input id="moradorFotoPlaca" placeholder="URL da foto da placa do veículo (opcional)"><select id="moradorCondominio" required><option value="">Selecione o condomínio</option></select><button class="btn btn-primary full" type="submit">Criar/atualizar acesso do morador</button></form></div>
+        <div class="module-card"><h2>🔐 Alterar senha do morador</h2><form id="senhaMoradorForm" class="form-grid"><select id="senhaMoradorSelect" required><option value="">Selecione um morador</option></select><input id="novaSenhaMorador" type="password" placeholder="Nova senha de acesso (mínimo 6 caracteres)" required><button class="btn btn-primary" type="submit">Atualizar senha do morador</button></form></div>
+        <div class="table-card"><h3>Moradores cadastrados</h3><div id="moradoresList"></div></div>
+      </div>
+
+      <div class="tab-content" id="tab-portaria">
+        <div class="module-card"><h2>🛎️ Acessos da Portaria</h2><p>Cadastre porteiros por condomínio e gerencie login, senha, edição e remoção.</p><form id="portariaForm" class="form-grid two"><input type="hidden" id="portariaId"><select id="portariaCondominio" required><option value="">Selecione o condomínio</option></select><input id="portariaNome" placeholder="Nome do porteiro(a)" required><input id="portariaCpf" placeholder="CPF"><input id="portariaCelular" placeholder="Número de celular"><input id="portariaEmail" type="email" placeholder="E-mail para login" required><input id="portariaSenha" type="password" placeholder="Senha de acesso"><button class="btn btn-primary full" type="submit">Criar/atualizar login da portaria</button></form></div>
+        <div class="table-card"><h3>Logins de portaria cadastrados</h3><div id="portariaList"></div></div>
+      </div>
+
+      <div class="tab-content" id="tab-lancamentos">
+        <div class="module-card"><h2>💳 Lançamentos</h2><p>Registre despesas/receitas que o morador verá no painel do condomínio vinculado.</p><form id="lancamentoForm" class="form-grid two"><input type="hidden" id="lancamentoId"><select id="lancamentoCondominio" required><option value="">Selecione o condomínio</option></select><input id="lancamentoTitulo" placeholder="Título do lançamento" required><input id="lancamentoCategoria" placeholder="Categoria"><input id="lancamentoValor" type="number" step="0.01" placeholder="Valor" required><input id="lancamentoData" type="date"><select id="lancamentoTipo"><option value="despesa">Despesa</option><option value="receita">Receita</option></select><textarea id="lancamentoDescricao" placeholder="Descrição do lançamento"></textarea><button class="btn btn-primary full" type="submit">Salvar lançamento</button></form></div>
+        <div class="table-card"><h3>Lançamentos cadastrados</h3><div id="lancamentosList"></div></div>
+      </div>
+
+      <div class="tab-content" id="tab-relatorios">
+        <div class="module-card"><h2>📄 Relatórios e Backup</h2><p>Exporte dados do portal e gere relatórios rápidos para conferência.</p><div class="action-grid"><button class="action-card" id="exportCsv">📊<strong>Exportar lançamentos CSV</strong><span>Planilha compatível com Excel.</span></button><button class="action-card" id="exportJson">💾<strong>Gerar backup JSON</strong><span>Condomínios, moradores, portaria, lançamentos, mensagens e ocorrências.</span></button><label class="action-card">📥<strong>Importar backup JSON</strong><span>Restaure dados a partir de arquivo.</span><input id="importJson" type="file" accept="application/json" hidden></label><button class="action-card" onclick="window.print()">🖨️<strong>Imprimir / PDF</strong><span>Relatório visual da tela atual.</span></button></div></div>
+      </div>
+
+      <div class="tab-content" id="tab-mensagens">
+        <div class="module-card"><h2>💬 Mensagens dos moradores</h2><p>Filtre por condomínio, veja o morador que enviou e responda diretamente pelo painel.</p><div class="form-grid"><select id="msgFiltroCondominio"><option value="">Todos os condomínios</option></select><button class="btn btn-primary" id="carregarMensagens">Carregar mensagens</button></div></div>
+        <div class="messages-layout"><div class="table-card"><h3>Moradores com mensagens</h3><div id="msgMoradores"></div></div><div class="table-card"><h3>Conversa</h3><div id="msgConversa">Clique no nome do morador para abrir a conversa.</div><form id="adminReplyForm" class="form-grid one hidden"><textarea id="adminReplyText" placeholder="Digite a resposta para o morador"></textarea><button class="btn btn-primary" type="submit">Responder morador</button></form></div></div>
+      </div>
+
+      <div class="tab-content" id="tab-ocorrencias">
+        <div class="stats"><article><span>Abertas</span><strong id="statAbertas">0</strong></article><article><span>Vencidas</span><strong id="statVencidas">0</strong></article><article><span>Concluídas</span><strong id="statConcluidas">0</strong></article><article><span>Tempo médio</span><strong id="statTempo">0 dias</strong></article></div>
+        <div class="two-col"><div class="module-card"><h2>📌 Nova ocorrência</h2><form id="ocorrenciaForm" class="form-grid one"><select id="ocCond" required><option value="">Selecione o condomínio</option></select><input id="ocUnidade" placeholder="Unidade / apartamento (opcional)"><input id="ocSolicitante" placeholder="Nome do solicitante"><select id="ocCategoria" required><option value="Administrativo">Administrativo</option><option value="Engenharia">Engenharia</option><option value="Financeiro">Financeiro</option><option value="Manutenção">Manutenção</option></select><select id="ocPrioridade"><option value="normal">Prioridade normal</option><option value="alta">Prioridade alta</option><option value="urgente">Urgente</option></select><textarea id="ocDescricao" placeholder="Descrição detalhada da demanda" required></textarea><input id="ocAnexos" placeholder="URLs dos anexos (opcional)"><button class="btn btn-primary" type="submit">Registrar ocorrência</button></form></div><div class="module-card"><h2>⚙️ Categorias e SLA</h2><form id="slaForm" class="form-grid one"><input id="slaCategoria" placeholder="Categoria. Ex.: Engenharia"><input id="slaSetor" placeholder="Setor responsável. Ex.: Engenharia"><input id="slaResponsavel" placeholder="Responsável padrão (opcional)"><select id="slaPerfil"><option>Administrativo</option><option>Financeiro</option><option>Engenharia</option></select><input id="slaDias" type="number" placeholder="Prazo padrão em dias"><button class="btn btn-primary" type="submit">Salvar categoria</button></form><div id="slaList"></div></div></div>
+        <div class="table-card"><h3>Ocorrências cadastradas</h3><div class="form-grid"><select id="ocFiltroCond"><option value="">Todos os condomínios</option></select><select id="ocFiltroStatus"><option value="">Todos os status</option><option value="aberta">Aberta</option><option value="em_andamento">Em andamento</option><option value="concluida">Concluída</option></select><input id="ocBusca" placeholder="Buscar por número, solicitante, categoria..."></div><div id="ocorrenciasList"></div></div>
+      </div>
+
+      <div class="tab-content" id="tab-remocoes">
+        <div class="two-col"><div class="module-card danger"><h2>🗑️ Remover morador</h2><select id="removeMoradorSelect"><option value="">Selecione o morador</option></select><button class="btn danger-btn" id="removeMoradorBtn">Remover morador</button></div><div class="module-card danger"><h2>🗑️ Remover lançamento</h2><select id="removeLancamentoSelect"><option value="">Selecione o lançamento</option></select><button class="btn danger-btn" id="removeLancamentoBtn">Remover lançamento</button></div></div>
+      </div>
+    </section>
+
+    <section id="moradorPanel" class="panel hidden">
+      <div class="panel-head"><div><span class="eyebrow">Área do morador</span><h1 id="moradorTitulo">Bem-vindo</h1><p id="moradorSubtitulo">Visualize informações do seu condomínio.</p></div><button class="btn small" data-logout>Sair</button></div>
+      <div class="stats"><article><span>Total gasto</span><strong id="moradorTotal">R$ 0,00</strong></article><article><span>Quantidade de lançamentos</span><strong id="moradorQtd">0</strong></article><article><span>Condomínio</span><strong id="moradorCondNome">-</strong></article></div>
+      <div class="two-col"><div class="table-card"><h2>📊 Lançamentos do condomínio</h2><div id="moradorLancamentos"></div></div><div class="table-card"><h2>💬 Mensagens com a administração</h2><div id="moradorMensagens"></div><form id="moradorMsgForm" class="form-grid one"><textarea id="moradorMsgTexto" placeholder="Digite sua mensagem para o síndico/administração"></textarea><button class="btn btn-primary" type="submit">Enviar mensagem</button></form></div></div>
+    </section>
+  </main>
+  <div id="toast" class="toast"></div>
+  <script src="portal.js"></script>
+</body>
+</html>
