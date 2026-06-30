@@ -15,7 +15,7 @@
   <header class="site-header">
     <div class="topbar">
       <div class="topbar__item">🌊 Portal Transparência Arquipélago.</div>
-      <div class="topbar__contacts"><a href="tel:+5592982452810">☎️ (92) 98245-2810</a><a href="mailto:arquipelago.adm.condominio@gmail.com">✉️ contato@arquipelagocondominios.com.br</a></div>
+      <div class="topbar__contacts"><a href="https://wa.me/5592982452810" target="_blank" rel="noopener noreferrer">☎️ (92) 98245-2810</a><a href="mailto:arquipelago.adm.condominio@gmail.com">✉️ contato@arquipelagocondominios.com.br</a></div>
     </div>
     <nav class="navbar" aria-label="Portal Arquipélago">
       <a class="brand" href="index.html"><img src="logo-arquipelago.jpeg" alt="Logo Arquipélago"><span><strong>Arquipélago</strong><small>Administração de Condomínios</small></span></a>
@@ -47,12 +47,22 @@
           </form>
           <small class="hint">Acesso inicial após executar o SQL: admin@arquipelago.com / admin123</small>
         </article>
+        <article class="login-card portaria-login">
+          <h2>🛎️ Login da portaria</h2>
+          <p>Acesso da equipe de portaria para entrar no ambiente operacional vinculado ao condomínio.</p>
+          <form id="portariaLoginForm" class="form-grid one">
+            <select id="portariaLoginCondominio" required><option value="">Selecione o condomínio</option></select>
+            <input id="portariaLoginEmail" type="email" placeholder="E-mail da portaria" required>
+            <input id="portariaLoginSenha" type="password" placeholder="Senha de acesso" required>
+            <button class="btn btn-primary" type="submit">Entrar como portaria</button>
+          </form>
+        </article>
       </div>
     </section>
 
     <section id="adminPanel" class="panel hidden">
       <div class="panel-head"><div><span class="eyebrow">Painel administrativo</span><h1>Gestão completa do condomínio</h1><p>Gerencie condomínios, moradores, portaria, lançamentos, mensagens, ocorrências e backups.</p></div><button class="btn small" data-logout>Sair</button></div>
-      <div class="tabs"><button data-tab="condominios" class="active">Condomínios</button><button data-tab="moradores">Moradores</button><button data-tab="portaria">Portaria</button><button data-tab="lancamentos">Lançamentos</button><button data-tab="relatorios">Relatórios e Backup</button><button data-tab="mensagens">Mensagens</button><button data-tab="ocorrencias">Ocorrências</button><button data-tab="remocoes">Remoções</button></div>
+      <div class="tabs"><button data-tab="condominios" class="active">Condomínios</button><button data-tab="moradores">Moradores</button><button data-tab="portaria">Portaria</button><button data-tab="lancamentos">Lançamentos</button><button data-tab="relatorios">Relatórios e Backup</button><button data-tab="mensagens">Mensagens</button><button data-tab="remocoes">Remoções</button></div>
 
       <div class="tab-content active" id="tab-condominios">
         <div class="module-card"><h2>🏢 Condomínios</h2><p>Crie, edite e remova condomínios.</p><form id="condominioForm" class="form-grid"><input type="hidden" id="condominioId"><input id="condNome" placeholder="Nome do condomínio" required><input id="condEndereco" placeholder="Endereço"><input id="condCnpj" placeholder="CNPJ"><input id="condResponsavel" placeholder="Responsável / síndico"><button class="btn btn-primary" type="submit">Salvar condomínio</button></form></div>
@@ -92,6 +102,15 @@
 
       <div class="tab-content" id="tab-remocoes">
         <div class="two-col"><div class="module-card danger"><h2>🗑️ Remover morador</h2><select id="removeMoradorSelect"><option value="">Selecione o morador</option></select><button class="btn danger-btn" id="removeMoradorBtn">Remover morador</button></div><div class="module-card danger"><h2>🗑️ Remover lançamento</h2><select id="removeLancamentoSelect"><option value="">Selecione o lançamento</option></select><button class="btn danger-btn" id="removeLancamentoBtn">Remover lançamento</button></div></div>
+      </div>
+    </section>
+
+
+    <section id="portariaPanel" class="panel hidden">
+      <div class="panel-head"><div><span class="eyebrow">Painel da portaria</span><h1 id="portariaTitulo">Portaria</h1><p id="portariaSubtitulo">Acesso operacional da portaria.</p></div><button class="btn small" data-logout>Sair</button></div>
+      <div class="two-col">
+        <div class="table-card"><h2>🏢 Condomínio vinculado</h2><p id="portariaCondNome">-</p></div>
+        <div class="table-card"><h2>📌 Orientação</h2><p>Use este acesso para rotinas da portaria. O cadastro e a alteração de senha continuam sendo feitos pela administração.</p></div>
       </div>
     </section>
 
