@@ -1,5 +1,5 @@
-const SUPABASE_URL = 'COLE_AQUI_A_URL_DO_SEU_SUPABASE';
-const SUPABASE_ANON_KEY = 'COLE_AQUI_A_CHAVE_ANON_PUBLIC_DO_SUPABASE';
+const SUPABASE_URL = 'https://apykziojynimjarwdwoe.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFweWt6aW9qeW5pbWphcndkd29lIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI3MTA4MzcsImV4cCI6MjA5ODI4NjgzN30.g3NzSf94bLe__CJM8DZHPhYilsod2XtnasP5Di2iIHw';
 const useSupabase = SUPABASE_URL.startsWith('http') && SUPABASE_ANON_KEY.length > 40;
 const db = useSupabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 const $ = id => document.getElementById(id);
