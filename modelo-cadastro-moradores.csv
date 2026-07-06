@@ -1,0 +1,3 @@
+condominio_nome,nome,email,senha,cpf,celular,bloco,apartamento,unidade,placa_veiculo,pessoas_vinculadas
+"Condomínio Orquídea","Maria Silva","maria@email.com","123456","000.000.000-00","(92) 90000-0000","Torre 28","301","Torre 28 - 301","ABC1D23","João Silva - 111.111.111-11 | Ana Silva - 222.222.222-22"
+"Condomínio Orquídea","Carlos Souza","carlos@email.com","123456","333.333.333-33","(92) 93333-3333","Torre 29","104","Torre 29 - 104","DEF4G56","Paula Souza - 444.444.444-44"
