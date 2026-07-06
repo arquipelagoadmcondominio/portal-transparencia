@@ -212,3 +212,43 @@ on conflict (id) do nothing;
 drop policy if exists "portal_arquipelago_storage_public" on storage.objects;
 create policy "portal_arquipelago_storage_public" on storage.objects
 for all using (bucket_id = 'portal-arquipelago') with check (bucket_id = 'portal-arquipelago');
+
+-- =============================================================
+-- ATUALIZAÇÃO 06/07/2026 - mensagens, avisos e anexos
+-- Execute este bloco também se o banco já existir.
+-- =============================================================
+alter table public.moradores add column if not exists bloco text;
+alter table public.moradores add column if not exists apartamento text;
+alter table public.moradores add column if not exists pessoas_vinculadas text;
+alter table public.moradores add column if not exists foto_placa_data text;
+
+alter table public.lancamentos add column if not exists imagens text;
+alter table public.lancamentos add column if not exists documentos text;
+
+alter table public.mensagens drop constraint if exists mensagens_remetente_check;
+alter table public.mensagens add constraint mensagens_remetente_check check (remetente in ('morador','admin','portaria'));
+alter table public.mensagens add column if not exists destinatario text default 'admin';
+alter table public.mensagens add column if not exists portaria_id uuid references public.portaria(id) on delete set null;
+alter table public.mensagens add column if not exists anexo_imagem text;
+alter table public.mensagens add column if not exists lida_admin boolean default false;
+alter table public.mensagens add column if not exists lida_morador boolean default false;
+alter table public.mensagens add column if not exists lida_portaria boolean default false;
+
+create table if not exists public.avisos (
+  id uuid primary key default gen_random_uuid(),
+  condominio_id uuid references public.condominios(id) on delete cascade,
+  titulo text not null,
+  texto text not null,
+  imagem text,
+  lidos text default '[]',
+  created_at timestamptz default now(),
+  updated_at timestamptz default now()
+);
+
+alter table public.avisos enable row level security;
+drop policy if exists "portal_public_avisos" on public.avisos;
+create policy "portal_public_avisos" on public.avisos for all using (true) with check (true);
+drop trigger if exists trg_avisos_updated_at on public.avisos;
+create trigger trg_avisos_updated_at before update on public.avisos for each row execute function public.set_updated_at();
+create index if not exists idx_avisos_condominio on public.avisos(condominio_id);
+create index if not exists idx_mensagens_portaria on public.mensagens(portaria_id);
