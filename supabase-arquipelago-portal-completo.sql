@@ -252,3 +252,13 @@ drop trigger if exists trg_avisos_updated_at on public.avisos;
 create trigger trg_avisos_updated_at before update on public.avisos for each row execute function public.set_updated_at();
 create index if not exists idx_avisos_condominio on public.avisos(condominio_id);
 create index if not exists idx_mensagens_portaria on public.mensagens(portaria_id);
+
+-- =============================================================
+-- ATUALIZAÇÃO COMPLEMENTAR 06/07/2026 - organização mensal,
+-- visualização de PDF, múltiplas imagens nos avisos e exclusão
+-- individual de mensagens no painel do morador.
+-- Execute este bloco se o banco já existir.
+-- =============================================================
+alter table public.avisos add column if not exists imagens text;
+alter table public.avisos add column if not exists ocultos text default '[]';
+alter table public.mensagens add column if not exists deleted_by text default '[]';
