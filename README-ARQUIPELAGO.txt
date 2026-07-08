@@ -29,3 +29,11 @@ Senha: admin123
 
 Observação:
 Enquanto você não colocar as chaves do Supabase no portal.js, o sistema funciona em modo local no navegador usando localStorage. Após configurar o Supabase, passa a gravar no banco.
+
+ATUALIZAÇÃO 100% SUPABASE
+-------------------------
+Antes de subir esta versão no GitHub/Cloudflare, execute no Supabase o arquivo:
+
+supabase-atualizacao-100-integracao.sql
+
+Ele cria a tabela central `usuarios`, migra administrador/moradores/portaria para ela e padroniza a tabela `mensagens` para o site e o futuro app Android usarem o mesmo banco.
