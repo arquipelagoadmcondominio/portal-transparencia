@@ -1,0 +1,8 @@
+ATUALIZAÇÕES
+- Pessoas vinculadas compatíveis com o app Android.
+- Múltiplas imagens disponíveis para encomenda, visitante e prestador.
+- Campos dos registros sincronizados com o aplicativo.
+- Entrega de encomendas permite selecionar pessoas vinculadas.
+- Administrador pode remover registros.
+
+Execute supabase-sincronizacao-pessoas-registros.sql antes do deploy.
