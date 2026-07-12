@@ -1,0 +1,10 @@
+ATUALIZAÇÕES DE SINCRONIZAÇÃO — PORTAL WEB + ANDROID
+
+1. Leitura compatível de pessoas vinculadas cadastradas pelo site ou Android.
+2. Gravação das pessoas vinculadas nas duas colunas de compatibilidade.
+3. Formulários de Encomenda, Visitante e Prestador alinhados à estrutura do app.
+4. Encomendas permitem várias imagens.
+5. Histórico exibe nome, CPF/RG, empresa, descrição e imagens.
+6. Administrador pode remover qualquer registro da portaria.
+7. Entrega de encomenda usa pessoas vinculadas do mesmo cadastro central.
+8. Execute supabase-atualizacao-sincronizacao-registros.sql antes do deploy/testes.
