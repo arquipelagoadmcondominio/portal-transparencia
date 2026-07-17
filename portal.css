@@ -15,3 +15,13 @@
 .taxa-condominio-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 22px;border-radius:999px;text-decoration:none;font-weight:900;box-shadow:0 12px 28px rgba(255,139,26,.22)}
 @media(max-width:900px){.panel-brand{align-items:flex-start}.panel-logo{width:74px;height:74px;border-radius:17px}}
 @media(max-width:560px){.panel-brand{width:100%;gap:12px}.panel-logo{width:62px;height:62px;border-radius:14px}.panel-brand h1{font-size:1.9rem}.morador-quick-actions{width:100%}.taxa-condominio-btn{width:100%;font-size:.95rem}}
+
+/* Seleção e remoção dos registros da portaria no painel administrativo */
+.registro-selection-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:16px 0;padding:12px 14px;border:1px solid #dbe6f2;border-radius:14px;background:#f7faff;flex-wrap:wrap}
+.registro-select-all,.registro-check{display:flex;align-items:center;gap:8px;font-weight:700;color:#073b49;cursor:pointer}
+.registro-check{width:max-content;margin-bottom:10px;padding:7px 10px;border-radius:10px;background:#eef5ff;font-size:.9rem}
+.registro-check input,.registro-select-all input{width:18px;height:18px;accent-color:#ff8a16}
+.registro-card:has(.admin-registro-checkbox:checked){border:2px solid #ff991f;background:#fff9ef;box-shadow:0 0 0 3px rgba(255,153,31,.12)}
+.btn.danger,.mini-btn.danger{background:#ffe8e8!important;color:#a11220!important;border:1px solid #f4a9af!important}
+.btn.danger:disabled{opacity:.45;cursor:not-allowed}
+@media(max-width:700px){.registro-selection-bar{align-items:stretch}.registro-selection-bar .btn{width:100%}}
